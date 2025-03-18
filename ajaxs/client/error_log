@@ -1,0 +1,15 @@
+[27-Jun-2024 15:59:48 UTC] PHP Fatal error:  Uncaught Error: Class 'DB' not found in /home/cshopbanunit/public_html/libs/helper.php:6
+Stack trace:
+#0 /home/cshopbanunit/public_html/ajaxs/client/nav.php(7): require_once()
+#1 {main}
+  thrown in /home/cshopbanunit/public_html/libs/helper.php on line 6
+[27-Jun-2024 16:00:50 UTC] PHP Notice:  Undefined variable: _PƠST in /home/cshopbanunit/public_html/ajaxs/client/nav.php on line 16
+[27-Jun-2024 16:00:50 UTC] PHP Notice:  Trying to access array offset on value of type null in /home/cshopbanunit/public_html/ajaxs/client/nav.php on line 16
+[27-Jun-2024 16:01:10 UTC] PHP Notice:  Undefined variable: _PƠST in /home/cshopbanunit/public_html/ajaxs/client/nav.php on line 16
+[27-Jun-2024 16:01:10 UTC] PHP Notice:  Trying to access array offset on value of type null in /home/cshopbanunit/public_html/ajaxs/client/nav.php on line 16
+[27-Jun-2024 16:01:20 UTC] PHP Notice:  Undefined variable: _PƠST in /home/cshopbanunit/public_html/ajaxs/client/nav.php on line 16
+[27-Jun-2024 16:01:20 UTC] PHP Notice:  Trying to access array offset on value of type null in /home/cshopbanunit/public_html/ajaxs/client/nav.php on line 16
+[27-Jun-2024 16:02:08 UTC] PHP Notice:  Undefined variable: _PƠST in /home/cshopbanunit/public_html/ajaxs/client/nav.php on line 16
+[27-Jun-2024 16:02:08 UTC] PHP Notice:  Trying to access array offset on value of type null in /home/cshopbanunit/public_html/ajaxs/client/nav.php on line 16
+[27-Jun-2024 16:02:41 UTC] PHP Notice:  Undefined variable: _PƠST in /home/cshopbanunit/public_html/ajaxs/client/nav.php on line 16
+[27-Jun-2024 16:02:41 UTC] PHP Notice:  Trying to access array offset on value of type null in /home/cshopbanunit/public_html/ajaxs/client/nav.php on line 16
