@@ -514,6 +514,12 @@ function GetCard24() {
             </div> 
         </div>    
     </div>
+    <div id="chat-box">
+        <div id="messages"></div>
+        <input type="text" id="message" placeholder="Type your message...">
+        <input type="file" id="file-upload">
+        <button onclick="sendMessage()">Send</button>
+    </div>
 </div>
 <?php }?>
 

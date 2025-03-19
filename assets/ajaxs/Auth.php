@@ -35,6 +35,7 @@
         'otp' => NULL
     ], " `username` = '$username' ");
     $_SESSION['username'] = $username;
+    $_SESSION['user_id'] = $user['id'];
     msg_success('Đăng nhập thành công ', BASE_URL(''), 0);
     }
     

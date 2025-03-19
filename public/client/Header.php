@@ -297,6 +297,11 @@
 
         // Pusher Setup
         const pusher = new Pusher('8b7ecf7e2ed0f17f5c8d', { cluster: 'ap1' });
+
+        pusher.bind_global(function(event, data) {
+    console.log(`📢 Event received on some channel:`, event, data);
+});
+
         /* const channel = pusher.subscribe('chat_channel_' + userId);
 
 
@@ -315,6 +320,7 @@
         const channel = pusher.subscribe('chat_channel_' + id);
         console.log("Admin subscribed to:", 'chat_channel_' + id);
         
+        
         channel.bind('new_message', function(data) {
             console.log("📩 Admin received a new message:", data);
             $("#messages").append(`<p><strong>${data.sender_id}:</strong> ${data.message}</p>`);
@@ -322,7 +328,7 @@
     });
 } else {
     // Normal user subscribes to their own channel
-    const channel = pusher.subscribe('chat_channel_' + userId);
+    /* const channel = pusher.subscribe('chat_channel_' + userId); */
     console.log("User subscribed to:", 'chat_channel_' + userId);
 
     channel.bind('new_message', function(data) {
