@@ -32,6 +32,8 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <style>
 /* CSS cho máy tính */
@@ -283,3 +285,69 @@
 <body>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </script>
+<script>
+
+        console.log("in send messsage");
+        const userId  = <?php echo json_encode($_SESSION['user_id']); ?>;
+        const adminId = 16; // Admin ID
+        console.log("Admin User ID:", userId);
+
+        const isAdmin = userId == 16; // Check if the current user is admin
+
+
+        // Pusher Setup
+        const pusher = new Pusher('8b7ecf7e2ed0f17f5c8d', { cluster: 'ap1' });
+        /* const channel = pusher.subscribe('chat_channel_' + userId);
+
+
+        channel.bind('new_message', function(data) {
+            console.log("get new messsage", data);
+            $("#messages").append(`<p><strong>${data.sender_id}:</strong> ${data.message}</p>`);
+        }); */
+
+        if (isAdmin) {
+    // Admin subscribes to ALL user channels
+    console.log("Admin is listening to all chat channels.");
+    
+    // Example: Admin listens to chat_channel_17 (Replace with dynamic logic if needed)
+    const userChannels = [17,16]; // Fetch from server or database dynamically
+    userChannels.forEach(id => {
+        const channel = pusher.subscribe('chat_channel_' + id);
+        console.log("Admin subscribed to:", 'chat_channel_' + id);
+        
+        channel.bind('new_message', function(data) {
+            console.log("📩 Admin received a new message:", data);
+            $("#messages").append(`<p><strong>${data.sender_id}:</strong> ${data.message}</p>`);
+        });
+    });
+} else {
+    // Normal user subscribes to their own channel
+    const channel = pusher.subscribe('chat_channel_' + userId);
+    console.log("User subscribed to:", 'chat_channel_' + userId);
+
+    channel.bind('new_message', function(data) {
+        console.log("📩 User received a new message:", data);
+        $("#messages").append(`<p><strong>${data.sender_id}:</strong> ${data.message}</p>`);
+    });
+}
+
+        function sendMessage() {
+            let message = $("#message").val();
+            let file = $("#file-upload")[0].files[0];
+            let formData = new FormData();
+            formData.append("message", message);
+            formData.append("receiver_id", adminId);
+            formData.append("file_url", file ? file.name : "");
+
+            $.ajax({
+                url: "chat",
+                type: "POST",
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function(response) {
+                    console.log("Message sent!");
+                }
+            });
+        }
+    </script>
